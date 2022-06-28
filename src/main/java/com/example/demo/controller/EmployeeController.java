@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Employee;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -15,17 +12,16 @@ public class EmployeeController {
 
     //1- C -  create / add
 
-    @RequestMapping("/add_emp")
-    public String addEmployee(){
+    @RequestMapping(value="/add_emp", method = RequestMethod.POST)
+    public String addEmployee(@RequestBody Employee employee){
 
-        Employee employee= new Employee("Raj",234345.2,"IT");
         employeeArrayList.add(employee);
         return "Successfully Added Employee ..";
     }
 
     //2-R- read /get
 
-    @RequestMapping("/get_all_emp")
+    @RequestMapping(value="/get_all_emp", method = RequestMethod.GET)
     public ArrayList<Employee> getEmployeeArrayList(){
 
         return employeeArrayList;
@@ -33,7 +29,7 @@ public class EmployeeController {
 
     //3- U- update
 
-    @RequestMapping("/update_emp")
+    @RequestMapping(value = "/update_emp", method = RequestMethod.PUT)
     public String update(@RequestParam String name){
 
         employeeArrayList.get(0).setName(name);
@@ -41,7 +37,7 @@ public class EmployeeController {
         return "Successfully Updated name as "+name;
     }
 
-    @RequestMapping("/delete_emp/{index}")
+    @RequestMapping(value = "/delete_emp/{index}", method = RequestMethod.DELETE)
     public String delete(@PathVariable int index){
 
         employeeArrayList.remove(index);
