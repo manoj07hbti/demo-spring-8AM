@@ -1,10 +1,27 @@
 package com.example.demo.model;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity(name="EMPLOYEE_8_AM")// step 1
 public class Employee {
+
+    // STEP 3 Primary Key
+
+    @Id   // makes primary key
+    @GeneratedValue// automatically assign value and increase it one by one 1,2,3,4,5,6,7........
+    Long Id;
 
     String name;
     double salary;
     String dept;
+
+    // default constructor  // STEP 2
+    public Employee() {
+    }
 
     public Employee(String name, double salary, String dept) {
         this.name = name;
